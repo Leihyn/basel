@@ -1,0 +1,1289 @@
+{
+  "address": "BQ1s2KUnoNTbK26JwNpg8L2Kh6LMnFXU45ydM7er8e6x",
+  "metadata": {
+    "name": "basel",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_oracle",
+      "discriminator": [
+        144,
+        223,
+        131,
+        120,
+        196,
+        253,
+        181,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "oracle",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  114,
+                  97,
+                  99,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "pair"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "pair",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update_rate",
+      "discriminator": [
+        24,
+        225,
+        53,
+        189,
+        72,
+        212,
+        225,
+        178
+      ],
+      "accounts": [
+        {
+          "name": "oracle",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "rate",
+          "type": "u64"
+        },
+        {
+          "name": "bid",
+          "type": "u64"
+        },
+        {
+          "name": "ask",
+          "type": "u64"
+        },
+        {
+          "name": "timestamp",
+          "type": "i64"
+        },
+        {
+          "name": "source_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "vol_30d",
+          "type": "u64"
+        },
+        {
+          "name": "vol_90d",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "approve_wallet",
+      "discriminator": [
+        96,
+        225,
+        176,
+        206,
+        131,
+        183,
+        10,
+        179
+      ],
+      "accounts": [
+        {
+          "name": "kyc_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  107,
+                  121,
+                  99
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "wallet"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "wallet",
+          "type": "pubkey"
+        },
+        {
+          "name": "kyc_level",
+          "type": "u8"
+        },
+        {
+          "name": "expires_at",
+          "type": "i64"
+        },
+        {
+          "name": "compliance_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "revoke_wallet",
+      "discriminator": [
+        246,
+        86,
+        181,
+        52,
+        10,
+        131,
+        187,
+        223
+      ],
+      "accounts": [
+        {
+          "name": "kyc_record",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_vault",
+      "discriminator": [
+        48,
+        191,
+        163,
+        44,
+        71,
+        129,
+        63,
+        164
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "base_mint"
+        },
+        {
+          "name": "quote_mint"
+        },
+        {
+          "name": "base_token_account"
+        },
+        {
+          "name": "quote_token_account"
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "pair",
+          "type": "string"
+        },
+        {
+          "name": "settlement_mode",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "deposit_liquidity",
+      "discriminator": [
+        245,
+        99,
+        59,
+        25,
+        151,
+        71,
+        233,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "depositor_token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "side",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "withdraw_liquidity",
+      "discriminator": [
+        149,
+        158,
+        33,
+        185,
+        47,
+        243,
+        253,
+        31
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "recipient_token_account",
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "side",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "create_dci",
+      "discriminator": [
+        167,
+        119,
+        33,
+        159,
+        51,
+        22,
+        154,
+        168
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "oracle"
+        },
+        {
+          "name": "kyc_record"
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "user_deposit_token_account",
+          "writable": true
+        },
+        {
+          "name": "vault_deposit_token_account",
+          "writable": true
+        },
+        {
+          "name": "vault_premium_token_account",
+          "writable": true
+        },
+        {
+          "name": "user_premium_token_account",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "strike",
+          "type": "u64"
+        },
+        {
+          "name": "expiry",
+          "type": "i64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "direction",
+          "type": {
+            "defined": {
+              "name": "DCIDirection"
+            }
+          }
+        },
+        {
+          "name": "premium",
+          "type": "u64"
+        },
+        {
+          "name": "compliance_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "strike_upper",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "settle_dci",
+      "discriminator": [
+        193,
+        241,
+        152,
+        42,
+        152,
+        90,
+        126,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "oracle"
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "attestation",
+          "writable": true
+        },
+        {
+          "name": "vault_base_token_account",
+          "writable": true
+        },
+        {
+          "name": "vault_quote_token_account",
+          "writable": true
+        },
+        {
+          "name": "owner_base_token_account",
+          "writable": true
+        },
+        {
+          "name": "owner_quote_token_account",
+          "writable": true
+        },
+        {
+          "name": "position_owner"
+        },
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "transfer_position",
+      "discriminator": [
+        139,
+        130,
+        102,
+        147,
+        135,
+        77,
+        113,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "signer": true
+        },
+        {
+          "name": "new_owner"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_rolling_strategy",
+      "discriminator": [
+        126,
+        219,
+        39,
+        88,
+        219,
+        190,
+        154,
+        63
+      ],
+      "accounts": [
+        {
+          "name": "strategy",
+          "writable": true
+        },
+        {
+          "name": "vault"
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "direction",
+          "type": {
+            "defined": {
+              "name": "DCIDirection"
+            }
+          }
+        },
+        {
+          "name": "strike_offset_bps",
+          "type": "u64"
+        },
+        {
+          "name": "tenor_seconds",
+          "type": "i64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "cancel_rolling_strategy",
+      "discriminator": [
+        64,
+        158,
+        199,
+        215,
+        167,
+        190,
+        163,
+        158
+      ],
+      "accounts": [
+        {
+          "name": "strategy",
+          "writable": true
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "execute_roll",
+      "discriminator": [
+        95,
+        167,
+        27,
+        235,
+        20,
+        91,
+        133,
+        7
+      ],
+      "accounts": [
+        {
+          "name": "strategy",
+          "writable": true
+        },
+        {
+          "name": "vault",
+          "writable": true
+        },
+        {
+          "name": "oracle"
+        },
+        {
+          "name": "kyc_record"
+        },
+        {
+          "name": "old_position",
+          "writable": true
+        },
+        {
+          "name": "new_position",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "user_token_account",
+          "writable": true
+        },
+        {
+          "name": "cranker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "OracleRate",
+      "discriminator": [
+        207,
+        166,
+        218,
+        221,
+        157,
+        67,
+        184,
+        124
+      ]
+    },
+    {
+      "name": "KYCRecord",
+      "discriminator": [
+        146,
+        148,
+        248,
+        74,
+        5,
+        76,
+        211,
+        100
+      ]
+    },
+    {
+      "name": "Vault",
+      "discriminator": [
+        211,
+        8,
+        232,
+        43,
+        2,
+        152,
+        117,
+        119
+      ]
+    },
+    {
+      "name": "DCIPosition",
+      "discriminator": [
+        91,
+        129,
+        105,
+        75,
+        24,
+        93,
+        32,
+        123
+      ]
+    },
+    {
+      "name": "Attestation",
+      "discriminator": [
+        152,
+        125,
+        183,
+        86,
+        36,
+        146,
+        121,
+        73
+      ]
+    },
+    {
+      "name": "RollingStrategy",
+      "discriminator": [
+        241,
+        34,
+        196,
+        137,
+        150,
+        86,
+        227,
+        51
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized: signer is not the expected authority"
+    },
+    {
+      "code": 6001,
+      "name": "OracleStale",
+      "msg": "Oracle rate is stale (older than max allowed age)"
+    },
+    {
+      "code": 6002,
+      "name": "KYCExpired",
+      "msg": "KYC record has expired"
+    },
+    {
+      "code": 6003,
+      "name": "KYCNotApproved",
+      "msg": "Wallet is not KYC approved"
+    },
+    {
+      "code": 6004,
+      "name": "KYCLevelInsufficient",
+      "msg": "KYC level insufficient for this operation"
+    },
+    {
+      "code": 6005,
+      "name": "VaultInsufficientLiquidity",
+      "msg": "Vault has insufficient liquidity for this operation"
+    },
+    {
+      "code": 6006,
+      "name": "DCINotExpired",
+      "msg": "DCI position has not expired yet"
+    },
+    {
+      "code": 6007,
+      "name": "DCIAlreadySettled",
+      "msg": "DCI position has already been settled"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidStrike",
+      "msg": "Invalid strike price"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidExpiry",
+      "msg": "Invalid expiry timestamp (must be in the future)"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidPremium",
+      "msg": "Invalid premium amount"
+    },
+    {
+      "code": 6011,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6012,
+      "name": "PairTooLong",
+      "msg": "Currency pair string too long (max 16 bytes)"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidSide",
+      "msg": "Invalid deposit side"
+    }
+  ],
+  "types": [
+    {
+      "name": "OracleRate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pair",
+            "type": "string"
+          },
+          {
+            "name": "rate",
+            "type": "u64"
+          },
+          {
+            "name": "bid",
+            "type": "u64"
+          },
+          {
+            "name": "ask",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "source_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "vol_30d",
+            "type": "u64"
+          },
+          {
+            "name": "vol_90d",
+            "type": "u64"
+          },
+          {
+            "name": "updated_slot",
+            "type": "u64"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "observations",
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "OracleObservation"
+                  }
+                },
+                6
+              ]
+            }
+          },
+          {
+            "name": "obs_index",
+            "type": "u8"
+          },
+          {
+            "name": "obs_count",
+            "type": "u8"
+          },
+          {
+            "name": "twap",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "KYCRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "kyc_level",
+            "type": "u8"
+          },
+          {
+            "name": "approved_at",
+            "type": "i64"
+          },
+          {
+            "name": "expires_at",
+            "type": "i64"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "compliance_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pair",
+            "type": "string"
+          },
+          {
+            "name": "base_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "base_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "quote_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "next_nonce",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "total_base_exposure",
+            "type": "u64"
+          },
+          {
+            "name": "total_quote_exposure",
+            "type": "u64"
+          },
+          {
+            "name": "settlement_mode",
+            "type": {
+              "defined": {
+                "name": "SettlementMode"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "DCIPosition",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "strike",
+            "type": "u64"
+          },
+          {
+            "name": "expiry",
+            "type": "i64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "DCIDirection"
+              }
+            }
+          },
+          {
+            "name": "premium_rate",
+            "type": "u64"
+          },
+          {
+            "name": "premium_paid",
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "DCIStatus"
+              }
+            }
+          },
+          {
+            "name": "settlement_rate",
+            "type": "u64"
+          },
+          {
+            "name": "settlement_amount",
+            "type": "u64"
+          },
+          {
+            "name": "compliance_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "strike_upper",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Attestation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "position",
+            "type": "pubkey"
+          },
+          {
+            "name": "sender",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount_in",
+            "type": "u64"
+          },
+          {
+            "name": "amount_out",
+            "type": "u64"
+          },
+          {
+            "name": "pair",
+            "type": "string"
+          },
+          {
+            "name": "six_rate",
+            "type": "u64"
+          },
+          {
+            "name": "six_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "source_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "compliance_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "converted",
+            "type": "bool"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "DCIDirection"
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DCIDirection",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "BaseToQuote"
+          },
+          {
+            "name": "QuoteToBase"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DCIStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Active"
+          },
+          {
+            "name": "Settled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OracleObservation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "rate",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SettlementMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Physical"
+          },
+          {
+            "name": "CashSettled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RollingStrategy",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "direction",
+            "type": {
+              "defined": {
+                "name": "DCIDirection"
+              }
+            }
+          },
+          {
+            "name": "strike_offset_bps",
+            "type": "u64"
+          },
+          {
+            "name": "tenor_seconds",
+            "type": "i64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "current_position",
+            "type": "pubkey"
+          },
+          {
+            "name": "last_roll_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ]
+}

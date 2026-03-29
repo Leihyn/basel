@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "types": ["mocha", "node"],
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["tests/**/*.ts"],
+  "exclude": ["node_modules", "app"]
+}

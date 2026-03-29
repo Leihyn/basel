@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# mTLS certificates — NEVER commit these
+relayer/certs/
+
+# Build artifacts
+target/
+.next/
+out/
+
+# OS
+.DS_Store
+
+# Solana
+test-ledger/
+
+# Video project (rendered outputs, voiceover, stock images)
+video/
+docs/
+
+# Vercel
+.vercel/
